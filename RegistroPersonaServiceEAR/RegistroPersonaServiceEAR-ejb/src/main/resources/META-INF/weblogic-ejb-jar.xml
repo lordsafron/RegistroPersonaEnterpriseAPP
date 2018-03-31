@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-ejb-jar xmlns="http://xmlns.oracle.com/weblogic/weblogic-ejb-jar" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd http://xmlns.oracle.com/weblogic/weblogic-ejb-jar http://xmlns.oracle.com/weblogic/weblogic-ejb-jar/1.3/weblogic-ejb-jar.xsd">
+    <weblogic-enterprise-bean>
+        <ejb-name>GeneroServiceImpl</ejb-name><!--nombre del parametro name de la implement de la interface-->
+        <stateless-session-descriptor>
+        </stateless-session-descriptor>
+        <transaction-descriptor>
+            <trans-timeout-seconds>180</trans-timeout-seconds>
+        </transaction-descriptor>
+        <enable-call-by-reference>true</enable-call-by-reference>
+        <!--run-as-principal-name>Admin</run-as-principal-name-->
+        <jndi-name>GeneroService</jndi-name><!--nombre del parametro mappedName de la implement de la interface | nombre con que se llamará el EJB remoto-->
+    </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>PaisServiceImpl</ejb-name><!--nombre del parametro name de la implement de la interface-->
+        <stateless-session-descriptor>
+        </stateless-session-descriptor>
+        <transaction-descriptor>
+            <trans-timeout-seconds>180</trans-timeout-seconds>
+        </transaction-descriptor>
+        <enable-call-by-reference>true</enable-call-by-reference>
+        <!--run-as-principal-name>Admin</run-as-principal-name-->
+        <jndi-name>PaisService</jndi-name><!--nombre del parametro mappedName de la implement de la interface | nombre con que se llamará el EJB remoto-->
+    </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>PersonaServiceImpl</ejb-name><!--nombre del parametro name de la implement de la interface-->
+        <stateless-session-descriptor>
+        </stateless-session-descriptor>
+        <transaction-descriptor>
+            <trans-timeout-seconds>180</trans-timeout-seconds>
+        </transaction-descriptor>
+        <enable-call-by-reference>true</enable-call-by-reference>
+        <!--run-as-principal-name>Admin</run-as-principal-name-->
+        <jndi-name>PersonaService</jndi-name><!--nombre del parametro mappedName de la implement de la interface | nombre con que se llamará el EJB remoto-->
+    </weblogic-enterprise-bean>
+    <weblogic-enterprise-bean>
+        <ejb-name>TipoIdentificacionServiceImpl</ejb-name><!--nombre del parametro name de la implement de la interface-->
+        <stateless-session-descriptor>
+        </stateless-session-descriptor>
+        <transaction-descriptor>
+            <trans-timeout-seconds>180</trans-timeout-seconds>
+        </transaction-descriptor>
+        <enable-call-by-reference>true</enable-call-by-reference>
+        <!--run-as-principal-name>Admin</run-as-principal-name-->
+        <jndi-name>TipoIdentificacionService</jndi-name><!--nombre del parametro mappedName de la implement de la interface | nombre con que se llamará el EJB remoto-->
+    </weblogic-enterprise-bean>
+</weblogic-ejb-jar>
