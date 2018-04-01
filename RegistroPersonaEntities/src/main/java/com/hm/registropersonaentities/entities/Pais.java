@@ -11,6 +11,7 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,9 +47,9 @@ public class Pais implements Serializable {
     @SerializedName("nombrePais")
     @Column(name = "nombre_pais")
     private String nombrePais;
-    @SerializedName("nacionalidadPersona")
-    @OneToMany(mappedBy = "idPais")
-    private List<NacionalidadPersona> nacionalidadPersonaList;
+    //@SerializedName("nacionalidadPersona")
+    //@OneToMany(mappedBy = "idPais",fetch = FetchType.LAZY)
+    //private List<NacionalidadPersona> nacionalidadPersonaList;
 
     public Pais() {
     }
@@ -80,7 +81,7 @@ public class Pais implements Serializable {
     public void setNombrePais(String nombrePais) {
         this.nombrePais = nombrePais;
     }
-
+/*
     @XmlTransient
     public List<NacionalidadPersona> getNacionalidadPersonaList() {
         return nacionalidadPersonaList;
@@ -89,7 +90,7 @@ public class Pais implements Serializable {
     public void setNacionalidadPersonaList(List<NacionalidadPersona> nacionalidadPersonaList) {
         this.nacionalidadPersonaList = nacionalidadPersonaList;
     }
-
+*/
     @Override
     public int hashCode() {
         int hash = 0;

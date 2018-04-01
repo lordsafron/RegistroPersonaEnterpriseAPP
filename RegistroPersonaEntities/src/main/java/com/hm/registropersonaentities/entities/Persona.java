@@ -87,9 +87,6 @@ public class Persona implements Serializable {
     @Column(name = "fecha_registro")
     @Temporal(TemporalType.TIME)
     private Date fechaRegistro;
-    @SerializedName("nacionalidadPersona")
-    @OneToMany(mappedBy = "idPersona", fetch = FetchType.LAZY,cascade = CascadeType.PERSIST)
-    private List<NacionalidadPersona> nacionalidadPersonaList;
     @SerializedName("personaIdentificacion")
     @OneToMany(mappedBy = "idPersona", fetch = FetchType.EAGER)
     private List<PersonaIdentificacion> personaIdentificacionList;
@@ -195,15 +192,6 @@ public class Persona implements Serializable {
 
     public void setFechaRegistro(Date fechaRegistro) {
         this.fechaRegistro = fechaRegistro;
-    }
-
-    @XmlTransient
-    public List<NacionalidadPersona> getNacionalidadPersonaList() {
-        return nacionalidadPersonaList;
-    }
-
-    public void setNacionalidadPersonaList(List<NacionalidadPersona> nacionalidadPersonaList) {
-        this.nacionalidadPersonaList = nacionalidadPersonaList;
     }
 
     @XmlTransient

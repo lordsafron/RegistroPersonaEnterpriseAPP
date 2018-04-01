@@ -14,6 +14,7 @@ import com.hm.registropersonaentities.entities.Persona;
 import com.hm.registropersonaentities.pojo.Respuesta;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ws.rs.Consumes;
@@ -51,6 +52,12 @@ public class PersonaResource {
         }
 
         List<Persona> lPersona = personaService.getAllPersons();
+        /*
+        for (Persona persona : lPersona) {
+            List<NacionalidadPersona> lNacionalidadPersona = new ArrayList<>();
+            persona.setNacionalidadPersonaList(lNacionalidadPersona);
+        }
+*/
         return Response.ok()
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET")

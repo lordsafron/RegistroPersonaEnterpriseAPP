@@ -10,7 +10,6 @@ import com.hm.registropersonabusiness.dao.PaisDAO;
 import com.hm.registropersonabusiness.dao.PersonaDAO;
 import com.hm.registropersonabusiness.dao.TipoIdentificacionDAO;
 import com.hm.registropersonaentities.entities.Genero;
-import com.hm.registropersonaentities.entities.NacionalidadPersona;
 import com.hm.registropersonaentities.entities.Pais;
 import com.hm.registropersonaentities.entities.Persona;
 import com.hm.registropersonaentities.entities.TipoIdentificacion;
@@ -49,6 +48,7 @@ public class PersonaDAOImpl implements PersonaDAO {
         try {
             Query consulta = em.createQuery("SELECT p FROM Persona p");
             lPersona = consulta.getResultList();
+            
             log.info("Fin del metodo getAllPersons de PersonaDAO");
             return lPersona;
         } catch (Exception ex) {
@@ -83,7 +83,6 @@ public class PersonaDAOImpl implements PersonaDAO {
     @Override
     public boolean insertPerson(Persona persona) {
         log.info("Inicio del metodo insertPerson de PersonaDAO");
-        NacionalidadPersona nacionalidadPersona = new NacionalidadPersona();
         
         boolean respuesta;
 
@@ -108,11 +107,6 @@ public class PersonaDAOImpl implements PersonaDAO {
         
 
         try {
-            List<NacionalidadPersona> lNacionalidadPersona = new ArrayList<>();
-            nacionalidadPersona.setIdPais(pais);
-            nacionalidadPersona.setIdPersona(persona);
-            lNacionalidadPersona.add(nacionalidadPersona);
-            persona.setNacionalidadPersonaList(lNacionalidadPersona);
             em.persist(persona);
             try {
             } catch (Exception ex) {

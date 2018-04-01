@@ -34,6 +34,7 @@ public class PaisDAOImpl implements PaisDAO {
         try {
             Query consulta = em.createQuery("SELECT p FROM Pais p");
             lPais = consulta.getResultList();
+
             log.info("Fin del metodo getAllCountries en paisDAO");
             return lPais;
         } catch (Exception ex) {
