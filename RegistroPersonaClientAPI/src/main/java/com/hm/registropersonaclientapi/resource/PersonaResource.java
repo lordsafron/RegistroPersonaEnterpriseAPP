@@ -6,6 +6,7 @@
 package com.hm.registropersonaclientapi.resource;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.hm.registropersonabusiness.service.PersonaService;
@@ -45,6 +46,12 @@ public class PersonaResource {
     @Path("getAllpersons")
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllpersons() {
+        Gson gson = new Gson();
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String respuesta;
+        JsonParser jsonParser = new JsonParser();
+        JsonArray jsonArray = new JsonArray();
+        JsonObject jsonObjectFinal = new JsonObject();
         try {
             personaService = (PersonaService) Utilidades.getEJBRemote("PersonaService", PersonaService.class.getName());
         } catch (Exception ex) {
@@ -52,17 +59,23 @@ public class PersonaResource {
         }
 
         List<Persona> lPersona = personaService.getAllPersons();
-        /*
         for (Persona persona : lPersona) {
-            List<NacionalidadPersona> lNacionalidadPersona = new ArrayList<>();
-            persona.setNacionalidadPersonaList(lNacionalidadPersona);
+            String fecha = sdf.format(persona.getFechaNacimiento());
+            respuesta = gson.toJson(persona);
+            JsonObject jsonObject = jsonParser.parse(respuesta).getAsJsonObject();
+            jsonObject.remove("fechaNacimiento");
+            jsonObject.addProperty("fechaNacimiento", fecha);
+            jsonArray.add(jsonObject);
         }
-*/
+        jsonObjectFinal.add("persona", jsonArray);
+        respuesta = jsonObjectFinal.toString();
+        System.out.println("jsonObjectFinal: " + jsonObjectFinal);
+
         return Response.ok()
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET")
                 .header("Access-Control-Allow-Headers", "Content-Type")
-                .status(Response.Status.OK).entity(lPersona).build();
+                .status(Response.Status.OK).entity(respuesta).build();
 
     }
 
