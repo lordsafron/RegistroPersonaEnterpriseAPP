@@ -84,17 +84,27 @@ public class PersonaResource {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response getByPersonId(@PathParam("idPersona") long idPersona) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Gson gson = new Gson();
+        JsonParser jsonParser = new JsonParser();
+        String respuesta;
         try {
             personaService = (PersonaService) Utilidades.getEJBRemote("PersonaService", PersonaService.class.getName());
         } catch (Exception ex) {
             log.error("Problemas de comunicacion con el EJB: " + ex);
         }
         Persona persona = personaService.getByPersonId(idPersona);
+        String fecha = sdf.format(persona.getFechaNacimiento());
+            respuesta = gson.toJson(persona);
+            JsonObject jsonObject = jsonParser.parse(respuesta).getAsJsonObject();
+            jsonObject.remove("fechaNacimiento");
+            jsonObject.addProperty("fechaNacimiento", fecha);
+            respuesta = jsonObject.toString();
         return Response.ok()
                 .header("Access-Control-Allow-Origin", "*")
                 .header("Access-Control-Allow-Methods", "GET")
                 .header("Access-Control-Allow-Headers", "Content-Type")
-                .status(Response.Status.OK).entity(persona).build();
+                .status(Response.Status.OK).entity(respuesta).build();
 
     }
 
